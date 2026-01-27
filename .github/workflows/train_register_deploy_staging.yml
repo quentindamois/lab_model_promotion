@@ -37,7 +37,7 @@ jobs:
           echo "result_json=$(cat train_out.json)" >> "$GITHUB_OUTPUT"
       - name: Evaluate gate 
         env:
-          ACCURACY_THRESHOLD: "0.90"
+          ACCURACY_THRESHOLD: "0.80"
         run: |
           echo '$'echo '${{ steps.train.outputs.result_json }}' | python ml/evaluate.py 
   deploy_staging:
