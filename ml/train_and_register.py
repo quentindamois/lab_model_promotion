@@ -19,7 +19,7 @@ def main():
     os.environ["MLFLOW_TRACKING_PASSWORD"] = token
     X, y = make_classification(n_samples=2000, n_features=10, random_state=42)
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-    model = LogisticRegression(max_iter=200, l1_ratio=0.2, C=0.9)
+    model = LogisticRegression(max_iter=200, l1_ratio=0.7, C=0.9, solver="saga")
     model.fit(X_train, y_train)
     preds = model.predict(X_test)
     acc = accuracy_score(y_test, preds)
