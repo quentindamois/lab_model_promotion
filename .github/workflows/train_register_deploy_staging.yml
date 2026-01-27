@@ -5,7 +5,7 @@ on:
   push:
     branches: ["main"]
     paths:
-      - "ml/_"
+      - "ml/"
       - ".github/workflows/train_register_deploy_staging.yml"
 
 jobs:
