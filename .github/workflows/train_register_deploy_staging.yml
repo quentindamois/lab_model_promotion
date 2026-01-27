@@ -29,7 +29,7 @@ jobs:
         id: train 
         env:
           MLFLOW_TRACKING_URI: ${{ secrets.DAGSHUB_MLFLOW_TRACKING_URI }}
-          MLFLOW_TRAKING_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
+          MLFLOW_TRACKING_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
           MODEL_NAME: churn-model
           DATA_VERSION: "dvc:v1"
         run: |
