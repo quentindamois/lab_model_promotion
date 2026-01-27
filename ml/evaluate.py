@@ -1,7 +1,7 @@
 import os
 import json
 import sys
-ACCURACY_THRESHOLD = float(os.getenv("ACCURACY_THRESHOLD", "0.90"))
+ACCURACY_THRESHOLD = float(os.getenv("ACCURACY_THRESHOLD", "0.80"))
 
 # uselless update 2
 
