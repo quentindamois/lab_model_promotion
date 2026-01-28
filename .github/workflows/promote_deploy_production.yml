@@ -40,7 +40,7 @@ jobs:
           client = MlflowClient()
           name = os.environ["MODEL_NAME"]
           version = os.environ["MODEL_VERSION"]
-          client.transition_model_version_stage(*
+          client.transition_model_version_stage(
             name=name,
             version=version,
             stage="Production",
