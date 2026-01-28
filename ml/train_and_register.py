@@ -9,7 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 MODEL_NAME = os.getenv("MODEL_NAME", "churn-model")
 
-# useless update 3
+# useless update 4
 
 def main():
     tracking_uri = os.environ["MLFLOW_TRACKING_URI"]
