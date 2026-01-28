@@ -40,36 +40,6 @@ jobs:
           ACCURACY_THRESHOLD: "0.80"
         run: |
           echo '${{ steps.train.outputs.result_json }}' | python ml/evaluate.py 
-      - name: Promote to Staging
-        env:
-          MLFLOW_TRACKING_URI: ${{ secrets.DAGSHUB_MLFLOW_TRACKING_URI }}
-          MLFLOW_TRACKING_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
-          MODEL_NAME: churn-model
-        run: |
-          python - << 'PY'
-          import os, mlflow, json, sys
-          from mlflow.tracking import MlflowClient
-          if not sys.stdin.isatty():
-            payload = sys.stdin.read().strip()
-          else:
-            payload = sys.argv[1]
-          data = json.loads(payload)
-          mlflow.set_tracking_uri(os.environ["MLFLOW_TRACKING_URI"])
-          token = os.environ["MLFLOW_TRACKING_TOKEN"]
-          os.environ["MLFLOW_TRACKING_USERNAME"] = token
-          os.environ["MLFLOW_TRACKING_PASSWORD"] = token
-
-          client = MlflowClient()
-          name = os.environ["MODEL_NAME"]
-          version = data["model_version"]
-          client.transition_model_version_stage(
-            name=name,
-            version=version,
-            stage="Staging",
-            archive_existing_versions=True
-          )
-          print(f"Promoted {name} v{version} to Staging")
-          PY
   deploy_staging:
     needs: train_register 
     runs-on: ubuntu-latest
