@@ -38,6 +38,9 @@ jobs:
       - name: Evaluate gate 
         env:
           ACCURACY_THRESHOLD: "0.80"
+          MLFLOW_TRACKING_URI: ${{ secrets.DAGSHUB_MLFLOW_TRACKING_URI }}
+          MLFLOW_TRACKING_TOKEN: ${{ secrets.DAGSHUB_TOKEN }}
+          MODEL_NAME: churn-model
         run: |
           echo '${{ steps.train.outputs.result_json }}' | python ml/evaluate.py 
   deploy_staging:
