@@ -3,7 +3,6 @@ import json
 import sys
 ACCURACY_THRESHOLD = float(os.getenv("ACCURACY_THRESHOLD", "0.80"))
 
-import ml
 # uselless update 2
 import os, mlflow
 from mlflow.tracking import MlflowClient
